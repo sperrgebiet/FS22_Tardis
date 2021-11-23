@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="61">
+	<author>sperrgebiet</author>
+	<version>0.1.0.0</version>
+	<title>Tardis Teleport</title>
+	<description>
+		<en>
+			<![CDATA[
+			This is a revamp of the good old Tardis from FS17.
+			
+			For beginners: With Tardis you can teleport yourself or your vehicles to any location on the map.
+			Besides that it has a couple of additional functionality. See below.
+			
+			More Details: https://github.com/sperrgebiet/FS19_Tardis
+			
+			Kudos to Ifko[nator] for the RegisterSpecialization script.
+			]]>
+		</en>
+		<de>
+			<![CDATA[
+			Dies ist eine Reinkarnation von Tardis aus LS17
+			Für Neueinsteiger: Mit Tardis kannst du dich selbst oder eines deiner Fahrzeuge zu jeder Lokation teleportieren.
+			
+			Mehr Details: https://github.com/sperrgebiet/FS19_Tardis
+			
+			Kudos to Ifko[nator] for the RegisterSpecialization script.
+			]]>
+		</de>
+	</description>
+	<iconFilename>icon.dds</iconFilename>
+	<multiplayer supported="false" />
+
+	<extraSourceFiles>
+		<sourceFile filename="RegisterSpecialization.lua" />
+	</extraSourceFiles>	
+	
+	<registerSpecializations debugPriority="0">
+		<registerSpecialization name="tardis" className="Tardis" filename="Tardis.lua" searchedSpecializations="Enterable"/>
+	</registerSpecializations>	
+
+
+	<actions>
+		<action name="tardis_showTardisCursor" axisType="HALF" />
+		<action name="tardis_resetVehicle" axisType="HALF" />
+		<action name="tardis_useHotspot1" axisType="HALF" />
+		<action name="tardis_useHotspot2" axisType="HALF" />
+		<action name="tardis_useHotspot3" axisType="HALF" />
+		<action name="tardis_useHotspot4" axisType="HALF" />
+		<action name="tardis_useHotspot5" axisType="HALF" />
+		<action name="tardis_useHotspot6" axisType="HALF" />
+		<action name="tardis_useHotspot7" axisType="HALF" />
+		<action name="tardis_useHotspot8" axisType="HALF" />
+		<action name="tardis_useHotspot9" axisType="HALF" />
+		<action name="tardis_deleteHotspot" axisType="HALF" />
+        <action name="tardis_resetCamera" axisType="HALF" />
+	</actions>
+	<inputBinding>	
+		<actionBinding action="tardis_showTardisCursor">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_t" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_resetVehicle">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_backspace" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_useHotspot1">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_KP_1" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_useHotspot2">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_KP_2" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_useHotspot3">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_KP_3" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_useHotspot4">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_KP_4" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_useHotspot5">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_clear" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_useHotspot6">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_KP_6" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_useHotspot7">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_KP_7" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_useHotspot8">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_KP_8" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_useHotspot9">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_KP_9" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_deleteHotspot">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_backspace" index="1" />
+		</actionBinding>
+		<actionBinding action="tardis_resetCamera">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_lalt KEY_r" index="1" />
+		</actionBinding>
+    </inputBinding>	
+	
+	<l10n>
+		<text name="tardis_Title">
+			<de>Tardis Teleport</de>
+			<en>Tardis Teleport</en>
+		</text>
+		<text name="input_tardis_showTardisCursor">
+			<de>Tardis: Auf Minimap aktivieren</de>
+			<en>Tardis: Activate on Minimap</en>
+		</text>
+		<text name="input_tardis_resetVehicle">
+			<de>Tardis: Fahrzeug auf derzeitiger Position aufrichten</de>
+			<en>Tardis: Raise up vehicle on current position</en>
+		</text>
+		<text name="lonelyFarmer">
+			<de>Einsamer Landwirt</de>
+			<en>Lonely Farmer</en>
+		</text>		
+		<text name="warning_combine">
+			<de>Ein Drescher sollte leer und zugeklappt sein, da es ansonsten Probleme geben kann.</de>
+			<en>A combine should be folded and empty, otherwise there can be issues.</en>
+		</text>
+		<text name="warning_train">
+			<de>Ein Zug passt leider nicht in eine Telefonzelle. Tardis funktioniert hier nicht.</de>
+			<en>A train doesn't fit a phone box. Tardis won't work here.</en>
+		</text>
+		<text name="warning_crane">
+			<de>Ein Kran passt leider nicht in eine Telefonzelle. Tardis funktioniert hier nicht.</de>
+			<en>A crane doesn't fit a phone box. Tardis won't work here.</en>
+		</text>
+		<text name="hotspot">
+			<de>Tardis Hotspot</de>
+			<en>Tardis Hotspot</en>
+		</text>
+		<text name="input_tardis_useHotspot1">
+			<de>Tardis: Ort 1</de>
+			<en>Tardis: Spot 1</en>
+		</text>
+		<text name="input_tardis_useHotspot2">
+			<de>Tardis: Ort 2</de>
+			<en>Tardis: Spot 2</en>
+		</text>	
+		<text name="input_tardis_useHotspot3">
+			<de>Tardis: Ort 3</de>
+			<en>Tardis: Spot 3</en>
+		</text>	
+		<text name="input_tardis_useHotspot4">
+			<de>Tardis: Ort 4</de>
+			<en>Tardis: Spot 4</en>
+		</text>	
+		<text name="input_tardis_useHotspot5">
+			<de>Tardis: Ort 5</de>
+			<en>Tardis: Spot 5</en>
+		</text>
+		<text name="input_tardis_useHotspot6">
+			<de>Tardis: Ort 6</de>
+			<en>Tardis: Spot 6</en>
+		</text>	
+		<text name="input_tardis_useHotspot7">
+			<de>Tardis: Ort 7</de>
+			<en>Tardis: Spot 7</en>
+		</text>	
+		<text name="input_tardis_useHotspot8">
+			<de>Tardis: Ort 8</de>
+			<en>Tardis: Spot 8</en>
+		</text>	
+		<text name="input_tardis_useHotspot9">
+			<de>Tardis: Ort 9</de>
+			<en>Tardis: Spot 9</en>
+		</text>	
+		<text name="input_tardis_deleteHotspot">
+			<de>Tardis: Lösche Hotspot im Umkreis</de>
+			<en>Tardis: Delete Hotspot in range</en>
+		</text>
+		<text name="input_tardis_resetCamera">
+            <de>Tardis: Kameras zurücksetzen</de>
+            <en>Tardis: Reset cameras</en>
+		</text>
+		<text name="warning_nohotspot">
+			<de>Keine Tardis Hotspots im Umkreis gefunden</de>
+			<en>No Tardis Hotspots found in this area</en>
+		</text>
+		<text name="warning_created">
+			<de>erstellt</de>
+			<en>created</en>
+		</text>
+		<text name="warning_deleted">
+			<de>gelöscht</de>
+			<en>deleted</en>
+		</text>
+        <text name="tardis_resetCamera">
+            <de>Tardis: Kameras zurücksetzen</de>
+            <en>Tardis: Reset cameras</en>
+        </text>
+        <text name="resetCameraText">
+            <de>Kameras wurden zurückgesetzt</de>
+            <en>Camera reset successful</en>
+        </text>
+	</l10n>
+</modDesc>
