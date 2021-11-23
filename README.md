@@ -7,14 +7,14 @@ Besides that it has a couple of additional functionalities. See below.
 Feedback, this readme and additional information incl. source code can be find at: https://github.com/sperrgebiet/FS22_Tardis
 
 **Please download the latest version directly from GitHub**
-[Latest version](https://github.com/sperrgebiet/FS22_Tardis/blob/master/FS22_Tardis.zip?raw=true)
+[Latest version](https://github.com/sperrgebiet/FS22_Tardis/blob/main/FS22_Tardis.zip?raw=true)
 
 ### Features
 * Teleport yourself (the player) to any location on the map
 * Enter a vehicle to teleport yourself AND the vehicle (incl. implements, trailers) to any location on the map
 * Reset a crashed/turned over vehicle. Reset in this case means to turn it over again
 * Set up to 5 map hotspots to easily teleport yourself and/or vehicles to one of those spots. Those hotspots obviously get saved & restored.
-* Integration with Vehicle Explorer (https://github.com/sperrgebiet/FS19_VehicleExplorer)
+* Integration with Vehicle Explorer (https://github.com/sperrgebiet/FS22_VehicleExplorer)
   
 
 ### Known issues
@@ -59,7 +59,7 @@ Für Neueinsteiger: Mit Tardis kannst du dich selbst oder eines deiner Fahrzeuge
 Feedback, dieses ReadMe und weitere Informationen sowie der Quelltext findet sich unter: https://github.com/sperrgebiet/FS22_Tardis
 
 **Bitte lade die letzte Version direkt von bei GitHub herunter**
-[Letzte Version](https://github.com/sperrgebiet/FS22_Tardis/blob/master/FS22_Tardis.zip?raw=true)
+[Letzte Version](https://github.com/sperrgebiet/FS22_Tardis/blob/main/FS22_Tardis.zip?raw=true)
 
 ### Funktionen
 * Teleportiere dich (den Spieler) an jeden Ort auf der Karte
