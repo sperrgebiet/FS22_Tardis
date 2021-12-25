@@ -26,6 +26,18 @@
 			Kudos to Ifko[nator] for the RegisterSpecialization script.
 			]]>
 		</de>
+		<it>
+			<![CDATA[
+			Questo è un rinnovamento del buon vecchio Tardis di FS17.
+
+			Per i principianti: con Tardis puoi teletrasportare te stesso o i tuoi veicoli in qualsiasi posizione sulla mappa.
+			Oltre a ciò ha un paio di funzionalità aggiuntive. Vedi sotto.
+
+			Maggiori dettagli: https://github.com/sperrgebiet/FS19_Tardis
+
+			Complimenti a Ifko[nator] per lo script RegisterSpecialization.
+			]]>
+		</it>
 	</description>
 	<iconFilename>icon.dds</iconFilename>
 	<multiplayer supported="false" />
@@ -100,98 +112,122 @@
 		<text name="tardis_Title">
 			<de>Tardis Teleport</de>
 			<en>Tardis Teleport</en>
+			<it>Teletrasporto Tardis</it>
 		</text>
 		<text name="input_tardis_showTardisCursor">
 			<de>Tardis: Auf Minimap aktivieren</de>
 			<en>Tardis: Activate on Minimap</en>
+			<it>Tardis: Attiva su minimappa</it>
 		</text>
 		<text name="input_tardis_resetVehicle">
 			<de>Tardis: Fahrzeug auf derzeitiger Position aufrichten</de>
 			<en>Tardis: Raise up vehicle on current position</en>
+			<it>Tardis: Sollevare il veicolo nella posizione attuale</it>
 		</text>
 		<text name="lonelyFarmer">
 			<de>Einsamer Landwirt</de>
 			<en>Lonely Farmer</en>
+			<it>Contadino solitario</it>
 		</text>		
 		<text name="warning_combine">
 			<de>Ein Drescher sollte leer und zugeklappt sein, da es ansonsten Probleme geben kann.</de>
 			<en>A combine should be folded and empty, otherwise there can be issues.</en>
+			<it>La trebbiatrice dovrebbe essere vuota e chiusa, altrimenti possono sorgere dei problemi.</it>
 		</text>
 		<text name="warning_train">
 			<de>Ein Zug passt leider nicht in eine Telefonzelle. Tardis funktioniert hier nicht.</de>
 			<en>A train doesn't fit a phone box. Tardis won't work here.</en>
+			<it>Sfortunatamente un treno non entra in una cabina telefonica. Tardis non funziona qui.</it>
 		</text>
 		<text name="warning_crane">
 			<de>Ein Kran passt leider nicht in eine Telefonzelle. Tardis funktioniert hier nicht.</de>
 			<en>A crane doesn't fit a phone box. Tardis won't work here.</en>
+			<it>Sfortunatamente una gru non entra in una cabina telefonica. Tardis non funziona qui.</it>
 		</text>
 		<text name="hotspot">
 			<de>Tardis Hotspot</de>
 			<en>Tardis Hotspot</en>
+			<it>Tardis Hotspot</it>
 		</text>
 		<text name="input_tardis_useHotspot1">
 			<de>Tardis: Ort 1</de>
 			<en>Tardis: Spot 1</en>
+			<it>Tardis: Hotspot 1</it>
 		</text>
 		<text name="input_tardis_useHotspot2">
 			<de>Tardis: Ort 2</de>
 			<en>Tardis: Spot 2</en>
+			<it>Tardis: Hotspot 2</it>
 		</text>	
 		<text name="input_tardis_useHotspot3">
 			<de>Tardis: Ort 3</de>
 			<en>Tardis: Spot 3</en>
+			<it>Tardis: Hotspot 3</it>
 		</text>	
 		<text name="input_tardis_useHotspot4">
 			<de>Tardis: Ort 4</de>
 			<en>Tardis: Spot 4</en>
+			<it>Tardis: Hotspot 4</it>
 		</text>	
 		<text name="input_tardis_useHotspot5">
 			<de>Tardis: Ort 5</de>
 			<en>Tardis: Spot 5</en>
+			<it>Tardis: Hotspot 5</it>
 		</text>
 		<text name="input_tardis_useHotspot6">
 			<de>Tardis: Ort 6</de>
 			<en>Tardis: Spot 6</en>
+			<it>Tardis: Hotspot 6</it>
 		</text>	
 		<text name="input_tardis_useHotspot7">
 			<de>Tardis: Ort 7</de>
 			<en>Tardis: Spot 7</en>
+			<it>Tardis: Hotspot 7</it>
 		</text>	
 		<text name="input_tardis_useHotspot8">
 			<de>Tardis: Ort 8</de>
 			<en>Tardis: Spot 8</en>
+			<it>Tardis: Hotspot 8</it>
 		</text>	
 		<text name="input_tardis_useHotspot9">
 			<de>Tardis: Ort 9</de>
 			<en>Tardis: Spot 9</en>
+			<it>Tardis: Hotspot 9</it>
 		</text>	
 		<text name="input_tardis_deleteHotspot">
 			<de>Tardis: Lösche Hotspot im Umkreis</de>
 			<en>Tardis: Delete Hotspot in range</en>
+			<it>Tardis: Elimina hotspot nell'area</it>
 		</text>
 		<text name="input_tardis_resetCamera">
-            <de>Tardis: Kameras zurücksetzen</de>
-            <en>Tardis: Reset cameras</en>
+            		<de>Tardis: Kameras zurücksetzen</de>
+            		<en>Tardis: Reset cameras</en>
+			<it>Tardis: Reset camere</it>
 		</text>
 		<text name="warning_nohotspot">
 			<de>Keine Tardis Hotspots im Umkreis gefunden</de>
 			<en>No Tardis Hotspots found in this area</en>
+			<it>Nessun hotspot Tardis trovato nella zona</it>
 		</text>
 		<text name="warning_created">
 			<de>erstellt</de>
 			<en>created</en>
+			<it>creato</it>
 		</text>
 		<text name="warning_deleted">
 			<de>gelöscht</de>
 			<en>deleted</en>
+			<it>eliminato</it>
 		</text>
         <text name="tardis_resetCamera">
             <de>Tardis: Kameras zurücksetzen</de>
             <en>Tardis: Reset cameras</en>
+	    <it>Tardis: Reset camere</it>
         </text>
         <text name="resetCameraText">
             <de>Kameras wurden zurückgesetzt</de>
             <en>Camera reset successful</en>
+	    <it>Le camere sono state ripristinate</it>
         </text>
 	</l10n>
 </modDesc>
