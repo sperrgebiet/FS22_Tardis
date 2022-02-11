@@ -153,11 +153,11 @@ function Tardis:mouseEvent(posX, posY, isDown, isUp, button)
 			if g_currentMission.controlledVehicle then
                 local veh = g_currentMission.controlledVehicle;
 				Tardis:teleportToLocation(posX, posZ, veh, false, false, false)
-				--TardisTeleportEvent.sendEvent(posX, posZ, veh, false, false, false)
+				TardisTeleportEvent.sendEvent(posX, posZ, veh, false, false, false)
 			else
 				--Tardis:dp(string.format('telePort param1 {%s} - param2 {%s}', Tardis.worldXpos * g_currentMission.terrainSize, Tardis.worldZpos * g_currentMission.terrainSize));
 				Tardis:teleportToLocation(posX, posZ);
-				--TardisTeleportEvent.sendEvent(posX, posZ, nil, false, false, false)
+				TardisTeleportEvent.sendEvent(posX, posZ, nil, false, false, false)
 			end
             Tardis.TardisActive = false;
             g_inputBinding:setShowMouseCursor(false);
@@ -169,9 +169,6 @@ end
 
 function Tardis:draw()
 	if Tardis.TardisActive then
-	    --local ovrlX = g_currentMission.hud.ingameMap.mapPosX + g_currentMission.hud.ingameMap.mapWidth / 2;
-		--local ovrlX = g_currentMission.hud.ingameMap.mapPosX + g_currentMission.hud.ingameMap.mapOffsetX + getTextWidth(g_currentMission.hud.ingameMap.mapLabelTextSize, g_currentMission.hud.ingameMap.mapLabelText);
-		--local ovrlX = g_currentMission.hud.ingameMap.mapPosX + getTextWidth(g_currentMission.hud.ingameMap.mapLabelTextSize, g_currentMission.hud.ingameMap.mapLabelText);
 		local ovrlX = g_currentMission.hud.ingameMap.layout.mapPosX + getTextWidth(g_currentMission.hud.fillLevelsDisplay.fillLevelTextSize, "DummyText");
 		local ovrlY = g_currentMission.hud.ingameMap.layout.mapPosY + g_currentMission.hud.ingameMap.layout.mapSizeY;
         local px = 0.01;
@@ -232,7 +229,7 @@ function Tardis:draw()
         end		
 		
 		if name == nil or string.len(name) == 0 then
-			name = string.format('%s %s', g_i18n.modEnvironments[Tardis.ModName].texts.lonelyFarmer, g_gameSettings.nickname);
+			name = string.format('%s %s', g_i18n.modEnvironments[Tardis.ModName].texts.lonelyFarmer, g_currentMission.playerNickname);
 		end
 		
 		if veh and veh.spec_combine ~= nil and veh.getFillLevelInformation ~= nil then
@@ -265,12 +262,6 @@ function Tardis:draw()
         setTextAlignment(RenderText.ALIGN_LEFT)
 		
 	end
-end
-
-function Tardis:delete()
-end
-
-function Tardis:deleteMap()
 end
 
 -- Functions for actionEvents/inputBindings
@@ -341,7 +332,7 @@ function Tardis:action_tardis_deleteHotspot(actionName, keyStatus, arg3, arg4, a
 	if hotspotId > 0 then
 		Tardis:dp(string.format('Found hotspot {%d}. Going to delete it.', hotspotId), 'action_deleteHotspot');
 		Tardis:removeMapHotspot(hotspotId);
-		TardisRemoveHotspotEvent.sendEvent(hotspotId, false);
+		--TardisRemoveHotspotEvent.sendEvent(hotspotId, false);
 	else
 		Tardis:dp('No hotspots nearby', 'action_deleteHotspot');
 		Tardis:showBlinking(nil, 3);
@@ -563,8 +554,8 @@ function Tardis:useOrSetHotspot(hotspotId)
 	Tardis:dp(string.format('hotspotId: {%d}', hotspotId), 'useOrSetHotspot');
 	if Tardis.hotspots[hotspotId] ~= nil then
 
-		local x = Tardis.hotspots[hotspotId]['xMapPos'];
-		local z = Tardis.hotspots[hotspotId]['zMapPos'];
+		local x = Tardis.hotspots[hotspotId]['worldX'];
+		local z = Tardis.hotspots[hotspotId]['worldZ'];
 		Tardis:dp(string.format('Hotspot {%d} exists. Teleporting now to: x {%s}, z {%s}', hotspotId, tostring(x), tostring(z)), 'createMapHotspot');
 		Tardis:teleportToLocation(x, z, nil, false, true);
 		--TardisTeleportEvent.sendEvent(x, z, nil, false, true, false)
@@ -574,29 +565,41 @@ function Tardis:useOrSetHotspot(hotspotId)
 end
 
 function Tardis:createMapHotspot(hotspotId, paramX, paramZ)
-	Tardis:dp(string.format('Going to create mapHotspot {%d}', hotspotId), 'createMapHotspot');
-	local x = paramX;
-	local y = nil;
-	local z = paramZ;
+	local x = paramX
+	local z = paramZ
+	local y = nil
+
 	
 	local name = string.format('%s %s', g_i18n.modEnvironments[Tardis.ModName].texts.hotspot, hotspotId);
-	local hotspot = MapHotspot:new(name,  MapHotspot.CATEGORY_MISSION);
+
+	local hotspot = PlaceableHotspot.new()
 	
+	local width, height = getNormalizedScreenValues(48, 48)
+	local file = Utils.getFilename("hotspot.dds", self.ModDirectory)
+	hotspot.icon = Overlay.new(file, 0, 0, width, height)
+	
+	hotspot.placeableType = PlaceableHotspot.TYPE.EXCLAMATION_MARK
+	hotspot:setName(name)
+
 	if x == nil and z == nil then
-		x, y, z = getWorldTranslation(g_currentMission.player.rootNode);
+		x, y, z = getWorldTranslation(g_currentMission.player.rootNode)
 	end
-	hotspot:setWorldPosition(x, z);
 	
-	hotspot:setImage(nil, getNormalizedUVs(MapHotspot.UV.FARM_HOUSE), {0.0044, 0.15, 0.6376, 1})
-	hotspot:setBackgroundImage(nil, getNormalizedUVs(MapHotspot.UV.FARM_HOUSE));
+	if y == nil then
+		y = getTerrainHeightAtWorldPos(g_currentMission.terrainRootNode, x, 0, z)
+	end
 	
-	g_currentMission:addMapHotspot(hotspot);
+	Tardis:dp(string.format('Hotspot position x: {%d} / z: {%d}', x, z), 'createMapHotspot');
+	hotspot:setWorldPosition(x, z)
 	
-	Tardis.hotspots[hotspotId] = hotspot;
+	hotspot:setTeleportWorldPosition(x, y, z)	
+	Tardis.hotspots[hotspotId] = hotspot
+	
+	g_currentMission:addMapHotspot(Tardis.hotspots[hotspotId])
 	
 	-- if there is a paramX and paramZ it means we got it from a savegame or MP, so no need for a blinking warning
 	if paramX == nil and paramZ == nil then
-		Tardis:showBlinking(hotspotId, 1);
+		Tardis:showBlinking(hotspotId, 1)
 	end
 end
 
@@ -613,8 +616,8 @@ function Tardis:saveHotspots(missionInfo)
 			local tardisKey = missionInfo.xmlKey .. ".TardisHotspots";
 
 			for k, v in pairs(Tardis.hotspots) do
-				setXMLFloat(missionInfo.xmlFile, tardisKey .. '.hotspot' .. k .. '#xMapPos' , v.xMapPos);
-				setXMLFloat(missionInfo.xmlFile, tardisKey .. '.hotspot' .. k .. '#zMapPos' , v.zMapPos);
+				setXMLFloat(missionInfo.xmlFile, tardisKey .. '.hotspot' .. k .. '#worldX' , v.worldX);
+				setXMLFloat(missionInfo.xmlFile, tardisKey .. '.hotspot' .. k .. '#worldZ' , v.worldZ);
 			end
 		end
 	end
@@ -636,11 +639,11 @@ function Tardis:loadHotspots()
 			for i=1, 9 do
 				local hotspotKey = tardisKey .. '.hotspot' .. i;
 				if hasXMLProperty(savegame, hotspotKey) then
-					local xMapPos = getXMLFloat(savegame, hotspotKey .. "#xMapPos");
-					local zMapPos = getXMLFloat(savegame, hotspotKey .. "#zMapPos");
-					Tardis:dp(string.format('Loaded MapHotSpot {%d} from savegame. xMapPos {%s}, zMapPos {%s}', i, tostring(xMapPos), tostring(zMapPos)), 'loadHotspots');
-					Tardis:createMapHotspot(i, xMapPos, zMapPos);
-					TardisCreateHotspotEvent.sendEvent(hotspotId, xMapPos, zMapPos, true);
+					local worldX = getXMLFloat(savegame, hotspotKey .. "#worldX");
+					local worldZ = getXMLFloat(savegame, hotspotKey .. "#worldZ");
+					Tardis:dp(string.format('Loaded MapHotSpot {%d} from savegame. worldX {%s}, worldZ {%s}', i, tostring(worldX), tostring(worldZ)), 'loadHotspots');
+					Tardis:createMapHotspot(i, worldX, worldZ);
+					TardisCreateHotspotEvent.sendEvent(hotspotId, worldX, worldZ, true);
 				end
 			end
 		end
@@ -664,8 +667,8 @@ function Tardis:hotspotNearby()
 	local hotspotNearby = false;
 
 	for k, v in pairs(Tardis.hotspots) do
-		local hsX = v.xMapPos;
-		local hsZ = v.zMapPos;
+		local hsX = v.worldX;
+		local hsZ = v.worldZ;
 		if (playerX >= (hsX - range) and playerX <= (hsX + range)) and (playerZ >= (hsZ - range) and playerZ <= (hsZ + range)) then
 			Tardis:dp(string.format('Hotspot {%d} nearby', k), 'hotspotNearby');
 			return k;

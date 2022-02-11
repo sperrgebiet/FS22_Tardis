@@ -28,7 +28,7 @@
 		</de>
 	</description>
 	<iconFilename>icon.dds</iconFilename>
-	<multiplayer supported="false" />
+	<multiplayer supported="true" />
 
 	<extraSourceFiles>
 		<sourceFile filename="RegisterSpecialization.lua" />

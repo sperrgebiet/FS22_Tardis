@@ -1,12 +1,17 @@
 $srcPath = $PSScriptRoot
 $dstPath = $PSScriptRoot
-$dstFilename = "FS19_Tardis.zip"
+$dstFilename = "FS22_Tardis.zip"
 
 $tmpPath = Join-Path $env:TMP "TmpZip"
 
 $ignorelist = get-content (Join-Path $srcPath ".gitignore")
 $ignorelist += "/New-ModZip.ps1"
-$ignorelist += "/icon.pdn"
+$ignorelist += "/textures/png"
+$ignorelist += "/screenshots"
+$ignoreList += "/README.md"
+$ignoreList += "/DEBUG"
+
+$ignoreList = ($ignorelist | ?{ -not [string]::IsNullOrEmpty($_) })
 
 if($srcPath.Length -gt 0 -and $dstPath.Length -gt 0)
 {
@@ -20,17 +25,23 @@ if($srcPath.Length -gt 0 -and $dstPath.Length -gt 0)
 
     foreach($f in $allFolders)
     {
-        New-Item -ItemType Directory -Path $f.FullName.ToString().Replace($srcPath, $tmpPath)
+		if( -not $ignorelist.contains($f.FullName.ToString().Replace("$srcPath", "").Replace("\","/")) )
+		{
+			New-Item -ItemType Directory -Path $f.FullName.ToString().Replace($srcPath, $tmpPath)
+		}
     }
 
 
     foreach($f in $allFiles)
     {   
-        if( -not $ignorelist.contains($f.FullName.ToString().Replace("$srcPath", "").Replace("\","/")) )
+        if( -not $ignorelist.contains($f.DirectoryName.ToString().Replace("$srcPath", "").Replace("\","/")) )
         {
-            #$F.FullName
-            #$F.FullName.ToString().Replace($srcPath, $tmpPath)
-            Copy-Item $f.FullName -Destination $f.FullName.ToString().Replace($srcPath, $tmpPath) -Force
+            if( -not $ignorelist.contains($f.FullName.ToString().Replace("$srcPath", "").Replace("\","/")) )
+            {
+                #$F.FullName
+                #$f.FullName.ToString().Replace("$srcPath", "").Replace("\","/")
+                Copy-Item $f.FullName -Destination $f.FullName.ToString().Replace($srcPath, $tmpPath) -Force
+            }
         }
     }
 
@@ -44,4 +55,8 @@ if($srcPath.Length -gt 0 -and $dstPath.Length -gt 0)
 	Start-Process -FilePath $binary -ArgumentList $rarargs -Wait
 
     Remove-Item -Path $tmpPath -Recurse -Force
+	
+	## MP?
+	Copy-Item -Path $dstFilename -Destination "..\..\mods-mp\" -Force
+	Copy-Item -Path $dstFilename -Destination "M:\TEMP3\FS22\" -Force
 }
