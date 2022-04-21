@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<modDesc descVersion="61">
+<modDesc descVersion="65">
 	<author>sperrgebiet</author>
-	<version>0.1.0.0</version>
+	<version>0.1.0.1</version>
 	<title>Tardis Teleport</title>
 	<description>
-		<en>
-			<![CDATA[
-			This is a revamp of the good old Tardis from FS17.
-			
-			For beginners: With Tardis you can teleport yourself or your vehicles to any location on the map.
-			Besides that it has a couple of additional functionality. See below.
-			
-			More Details: https://github.com/sperrgebiet/FS19_Tardis
-			
-			Kudos to Ifko[nator] for the RegisterSpecialization script.
-			]]>
+		<en><![CDATA[
+This is a revamp of the good old Tardis from FS17.
+
+For beginners: With Tardis you can teleport yourself or your vehicles to any location on the map.
+Besides that it has a couple of additional functionality. See below.
+
+More Details: https://github.com/sperrgebiet/FS19_Tardis
+
+Kudos to Ifko[nator] for the RegisterSpecialization script.
+]]>
 		</en>
-		<de>
-			<![CDATA[
-			Dies ist eine Reinkarnation von Tardis aus LS17
-			Für Neueinsteiger: Mit Tardis kannst du dich selbst oder eines deiner Fahrzeuge zu jeder Lokation teleportieren.
-			
-			Mehr Details: https://github.com/sperrgebiet/FS19_Tardis
-			
-			Kudos to Ifko[nator] for the RegisterSpecialization script.
-			]]>
+		<de><![CDATA[
+Dies ist eine Reinkarnation von Tardis aus LS17
+Für Neueinsteiger: Mit Tardis kannst du dich selbst oder eines deiner Fahrzeuge zu jeder Lokation teleportieren.
+
+Mehr Details: https://github.com/sperrgebiet/FS19_Tardis
+
+Kudos to Ifko[nator] for the RegisterSpecialization script.
+]]>
 		</de>
 	</description>
 	<iconFilename>icon.dds</iconFilename>
