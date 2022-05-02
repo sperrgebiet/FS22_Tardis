@@ -5,8 +5,11 @@
 Tardis = {};
 Tardis.eventName = {};
 
-Tardis.ModName = g_currentModName;
-Tardis.ModDirectory = g_currentModDirectory;
+-- It's great that Giants gets rid of functions as part of an update. Now we can do things more complicated than before
+--Tardis.ModName = g_currentModName
+--Tardis.ModDirectory = g_currentModDirectory
+Tardis.ModName = "FS22_Tardis"
+Tardis.ModDirectory = g_modManager.nameToMod.FS22_Tardis.modDir
 Tardis.Version = "0.9.2.1";
 
 -- Integration environment for VehicleExplorer
